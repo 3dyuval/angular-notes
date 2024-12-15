@@ -1,9 +1,9 @@
 /// <reference types="vitest" />
-
-import { defineConfig } from 'vite';
+import wasm from "vite-plugin-wasm";
+import topLevelAwait from "vite-plugin-top-level-await";
+import { defineConfig, UserConfig} from 'vite';
 import analog from '@analogjs/platform';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   build: {
     target: ['es2020'],
@@ -11,7 +11,10 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [
+    wasm(),
+    topLevelAwait(),
+    analog({ ssr: false })],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -22,4 +25,4 @@ export default defineConfig(({ mode }) => ({
   define: {
     'import.meta.vitest': mode !== 'production',
   },
-}));
+} satisfies UserConfig));
