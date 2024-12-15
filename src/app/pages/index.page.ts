@@ -1,55 +1,31 @@
 import { Component, signal } from '@angular/core';
+import { NotesComponent } from "../notes/notes.component"
+import { Repo } from "@automerge/automerge-repo"
+import { IndexedDBStorageAdapter } from "@automerge/automerge-repo-storage-indexeddb"
+import { BroadcastChannelNetworkAdapter } from "@automerge/automerge-repo-network-broadcastchannel"
+import { BrowserWebSocketClientAdapter } from '@automerge/automerge-repo-network-websocket'
 
 @Component({
   selector: 'app-home',
   standalone: true,
   template: `
-    <div>
-      <a href="https://analogjs.org/" target="_blank">
-        <img alt="Analog Logo" class="logo analog" src="/analog.svg" />
-      </a>
-    </div>
-
-    <h2>Analog</h2>
-
-    <h3>The fullstack meta-framework for Angular!</h3>
-
-    <div class="card">
-      <button type="button" (click)="increment()">Count {{ count() }}</button>
-    </div>
-
-    <p class="read-the-docs">
-      <a href="https://analogjs.org" target="_blank">Docs</a> |
-      <a href="https://github.com/analogjs/analog" target="_blank">GitHub</a> |
-      <a href="https://github.com/sponsors/brandonroberts" target="_blank">
-        Sponsor
-      </a>
-    </p>
+    <app-notes [repo]="repo"/>
   `,
-  styles: `
-    .logo {
-      will-change: filter;
-    }
-
-    .logo:hover {
-      filter: drop-shadow(0 0 2em #646cffaa);
-    }
-
-    .read-the-docs > * {
-      color: #fff;
-    }
-
-    @media (prefers-color-scheme: light) {
-      .read-the-docs > * {
-        color: #213547;
-      }
-    }
-  `,
+  imports: [
+    NotesComponent
+  ]
 })
-export default class HomeComponent {
-  count = signal(0);
+export default class YoComponent {
 
-  increment() {
-    this.count.update((count) => count + 1);
-  }
+  repo = new Repo({
+    storage: new IndexedDBStorageAdapter(),
+    network: [
+      new BroadcastChannelNetworkAdapter({
+        channelName: 'notes-repo'
+      }),
+      // new BrowserWebSocketClientAdapter("wss://sync.automerge.org")
+    ],
+  })
+
+
 }

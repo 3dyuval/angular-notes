@@ -41,6 +41,9 @@ dependencies:
   '@automerge/automerge-repo':
     specifier: ^1.2.1
     version: 1.2.1(@types/node@22.10.2)(typescript@5.5.4)
+  '@automerge/automerge-repo-network-broadcastchannel':
+    specifier: ^1.2.1
+    version: 1.2.1(@types/node@22.10.2)(typescript@5.5.4)
   '@automerge/automerge-repo-network-websocket':
     specifier: ^1.2.1
     version: 1.2.1(@types/node@22.10.2)(typescript@5.5.4)
@@ -201,7 +204,7 @@ packages:
     dependencies:
       '@analogjs/vite-plugin-angular': 1.10.1(@angular-devkit/build-angular@19.0.5)(@angular/build@19.0.5)
       '@analogjs/vite-plugin-nitro': 1.10.1(typescript@5.5.4)
-      '@nx/angular': 20.2.2(@angular-devkit/build-angular@19.0.5)(@angular-devkit/core@19.0.5)(@angular-devkit/schematics@19.0.5)(@schematics/angular@19.0.5)(@types/node@22.10.2)(eslint@9.17.0)(next@@automerge+automerge+next)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(rxjs@7.8.1)(typescript@5.5.4)
+      '@nx/angular': 20.2.2(@angular-devkit/build-angular@19.0.5)(@angular-devkit/core@19.0.5)(@angular-devkit/schematics@19.0.5)(@schematics/angular@19.0.5)(@types/node@22.10.2)(eslint@9.17.0)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(rxjs@7.8.1)(typescript@5.5.4)
       '@nx/devkit': 20.2.2(nx@20.2.2)
       '@nx/vite': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(typescript@5.5.4)(vite@5.4.11)(vitest@2.1.8)
       marked: 5.1.2
@@ -737,6 +740,18 @@ packages:
       '@angular/platform-browser': 19.0.4(@angular/animations@19.0.4)(@angular/common@19.0.4)(@angular/core@19.0.4)
       rxjs: 7.8.1
       tslib: 2.8.1
+    dev: false
+
+  /@automerge/automerge-repo-network-broadcastchannel@1.2.1(@types/node@22.10.2)(typescript@5.5.4):
+    resolution: {integrity: sha512-Jm3NiuFe/+3aHpHhRYEYOchkMkavMw7+ysNKqYgC7zyGM8jtBowJhxmD4awvz+I5dWNA64KNJIt4k7h295HPAQ==}
+    dependencies:
+      '@automerge/automerge-repo': 1.2.1(@types/node@22.10.2)(typescript@5.5.4)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - supports-color
+      - typescript
     dev: false
 
   /@automerge/automerge-repo-network-websocket@1.2.1(@types/node@22.10.2)(typescript@5.5.4):
@@ -3233,7 +3248,7 @@ packages:
       - vue-tsc
     dev: true
 
-  /@module-federation/node@2.6.11(next@@automerge+automerge+next)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0):
+  /@module-federation/node@2.6.11(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0):
     resolution: {integrity: sha512-ytCNML9Q9dQ7Xi/pTYp4Y+yP/YUiFyyCa8BEKnSt5Ipiqtu4QMxj46EkOIgvLv0nSlK+xOVgAzqtXLI89SfhCg==}
     peerDependencies:
       next: '*'
@@ -3251,10 +3266,9 @@ packages:
       '@module-federation/enhanced': 0.7.6(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0)
       '@module-federation/runtime': 0.7.6
       '@module-federation/sdk': 0.7.6
-      '@module-federation/utilities': 3.1.29(next@@automerge+automerge+next)(react-dom@19.0.0)(react@19.0.0)(webpack@5.88.0)
+      '@module-federation/utilities': 3.1.29(react-dom@19.0.0)(react@19.0.0)(webpack@5.88.0)
       btoa: 1.2.1
       encoding: 0.1.13
-      next: link:@automerge/automerge/next
       node-fetch: 2.7.0(encoding@0.1.13)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -3338,7 +3352,7 @@ packages:
       resolve: 1.22.8
     dev: true
 
-  /@module-federation/utilities@3.1.29(next@@automerge+automerge+next)(react-dom@19.0.0)(react@19.0.0)(webpack@5.88.0):
+  /@module-federation/utilities@3.1.29(react-dom@19.0.0)(react@19.0.0)(webpack@5.88.0):
     resolution: {integrity: sha512-yhHOgm3mkZBvQzT4HoBJAVhGIa7Nfhpd4Zdc11g0vYEMapU6lfN5HHipUFdj6bLUzHhDyrY6CaF3syqTuabAfQ==}
     peerDependencies:
       next: '*'
@@ -3354,7 +3368,6 @@ packages:
         optional: true
     dependencies:
       '@module-federation/sdk': 0.7.6
-      next: link:@automerge/automerge/next
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       webpack: 5.88.0
@@ -3749,7 +3762,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nx/angular@20.2.2(@angular-devkit/build-angular@19.0.5)(@angular-devkit/core@19.0.5)(@angular-devkit/schematics@19.0.5)(@schematics/angular@19.0.5)(@types/node@22.10.2)(eslint@9.17.0)(next@@automerge+automerge+next)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(rxjs@7.8.1)(typescript@5.5.4):
+  /@nx/angular@20.2.2(@angular-devkit/build-angular@19.0.5)(@angular-devkit/core@19.0.5)(@angular-devkit/schematics@19.0.5)(@schematics/angular@19.0.5)(@types/node@22.10.2)(eslint@9.17.0)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(rxjs@7.8.1)(typescript@5.5.4):
     resolution: {integrity: sha512-MVPc1Aywwg3axV1/O+nlbpVQXFc6TDadr/WkvUFGJJJ/Kf1KUeiyvAckY8b8H5Y9oS8ojI78UTsrB3HOko91bQ==}
     peerDependencies:
       '@angular-devkit/build-angular': '>= 17.0.0 < 20.0.0'
@@ -3764,7 +3777,7 @@ packages:
       '@nx/devkit': 20.2.2(nx@20.2.2)
       '@nx/eslint': 20.2.2(@types/node@22.10.2)(eslint@9.17.0)(nx@20.2.2)
       '@nx/js': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(typescript@5.5.4)
-      '@nx/module-federation': 20.2.2(@types/node@22.10.2)(next@@automerge+automerge+next)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)
+      '@nx/module-federation': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)
       '@nx/web': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(typescript@5.5.4)
       '@nx/webpack': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(typescript@5.5.4)
       '@nx/workspace': 20.2.2
@@ -3772,7 +3785,7 @@ packages:
       '@schematics/angular': 19.0.5
       '@typescript-eslint/type-utils': 8.18.0(eslint@9.17.0)(typescript@5.5.4)
       chalk: 4.1.2
-      magic-string: 0.30.12
+      magic-string: 0.30.15
       minimatch: 9.0.3
       piscina: 4.7.0
       rxjs: 7.8.1
@@ -3957,11 +3970,11 @@ packages:
       - typescript
     dev: true
 
-  /@nx/module-federation@20.2.2(@types/node@22.10.2)(next@@automerge+automerge+next)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4):
+  /@nx/module-federation@20.2.2(@types/node@22.10.2)(nx@20.2.2)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-KwxFV/ecRnMIplCJVdC3P7rhhP6pj2eoYvqUuEFjRkGeYRZhArlOT2dHHOgdRz427RAbLsOhZzFAdPI+LF7cxA==}
     dependencies:
       '@module-federation/enhanced': 0.7.6(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0)
-      '@module-federation/node': 2.6.11(next@@automerge+automerge+next)(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0)
+      '@module-federation/node': 2.6.11(react-dom@19.0.0)(react@19.0.0)(typescript@5.5.4)(webpack@5.88.0)
       '@module-federation/sdk': 0.7.6
       '@nx/devkit': 20.2.2(nx@20.2.2)
       '@nx/js': 20.2.2(@types/node@22.10.2)(nx@20.2.2)(typescript@5.5.4)
@@ -8954,7 +8967,7 @@ packages:
       escape-html: 1.0.3
       fresh: 0.5.2
       http-assert: 1.5.0
-      http-errors: 1.6.3
+      http-errors: 1.8.1
       is-generator-function: 1.0.10
       koa-compose: 4.1.0
       koa-convert: 2.0.0

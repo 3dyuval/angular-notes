@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DocHandle, isValidAutomergeUrl, Repo } from '@automerge/automerge-repo'
-import { IndexedDBStorageAdapter } from "@automerge/automerge-repo-storage-indexeddb"
 import { FormsModule } from "@angular/forms"
 import { injectRouter } from "@analogjs/router"
 
@@ -17,25 +16,21 @@ type Notes = Array<Note>
   styleUrl: './notes.component.scss',
   standalone: true
 })
-export class NotesComponent {
+export class NotesComponent implements OnInit {
 
-  repo: Repo
+  @Input() repo!: Repo
   router = injectRouter()
-  handle: DocHandle<Notes>
+  handle!: DocHandle<Notes>
 
   initialized = false;
 
   public notes: Notes = []
-  constructor() {
 
-    this.repo = new Repo({
-      storage: new IndexedDBStorageAdapter()
-      // network: [new BrowserWebSocketClientAdapter("wss://sync.automerge.org")],
-    })
+  ngOnInit() {
 
     if (isValidAutomergeUrl(this.rootDocUrl)) {
       this.handle = this.repo.find(this.rootDocUrl)
-      this.handle.doc().then(doc => this.notes =  doc.notes)
+      this.handle.doc().then(doc => this.notes = doc.notes)
         .finally(() => this.initialized = true)
       console.log('loaded doc.notes', this.notes)
     } else {
@@ -59,7 +54,7 @@ export class NotesComponent {
   }
 
 
-  addNote(index?: number){
+  addNote(index?: number) {
     this.handle.change((doc: { notes: Notes }) => {
       index = index || doc.notes.length
       doc.notes.splice(index, 0, { title: '', done: false })
