@@ -34,6 +34,7 @@
     "marked-gfm-heading-id": "^3.1.0",
     "marked-highlight": "^2.0.1",
     "marked-mangle": "^1.1.7",
+    "next": "link:@automerge/automerge/next",
     "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -1,0 +1,10 @@
+
+<div class="notes">
+  @for (note of notes; track notes; let i = $index) {
+    <form>
+      <button (click)="editNote(i)">Edit</button>
+      <input type="text" name="title" [ngModel]="note.title" readonly>
+      <input type="checkbox" name="done" [ngModel]="note.done" (change)="toggleComplete($any($event.target).checked, i)">
+    </form>
+  }
+</div>
