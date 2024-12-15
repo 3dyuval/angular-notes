@@ -23,8 +23,9 @@ export class NotesComponent {
   router = injectRouter()
   handle: DocHandle<Notes>
 
-  public notes: Notes = [{ title: 'Note 1', done: false }]
+  initialized = false;
 
+  public notes: Notes = []
   constructor() {
 
     this.repo = new Repo({
@@ -34,11 +35,14 @@ export class NotesComponent {
 
     if (isValidAutomergeUrl(this.rootDocUrl)) {
       this.handle = this.repo.find(this.rootDocUrl)
-      console.log('loaded doc', this.handle)
+      this.handle.doc().then(doc => this.notes =  doc.notes)
+        .finally(() => this.initialized = true)
+      console.log('loaded doc.notes', this.notes)
     } else {
       this.handle = this.repo.create({ notes: [{ title: 'Note 1', done: false }] })
-      console.log('created doc', this.handle)
+      console.log('created handle', this.handle)
       this.rootDocUrl = this.handle.url
+      this.initialized = true
     }
 
     this.handle.on('change', ({ doc }) => {
@@ -55,17 +59,32 @@ export class NotesComponent {
   }
 
 
+  addNote(index?: number){
+    this.handle.change((doc: { notes: Notes }) => {
+      index = index || doc.notes.length
+      doc.notes.splice(index, 0, { title: '', done: false })
+    })
+  }
+
   editNote(index: number) {
-    const newValue = prompt('Enter new value');
-    if (newValue) {
+    const value = prompt('Enter new value', this.notes[index].title);
+    if (value) {
       this.handle.change((doc: { notes: Notes }) => {
-        doc.notes[index].title = newValue!;
+        doc.notes[index].title = value!;
       })
     }
   }
 
   toggleComplete(value: boolean, index: number) {
-    this.notes[index].done = value;
+    this.handle.change((doc: { notes: Notes }) => {
+      doc.notes[index].done = value;
+    })
+  }
+
+  removeNote(index: number) {
+    this.handle.change((doc: { notes: Notes }) => {
+      doc.notes.splice(index, 1)
+    })
   }
 
 }
