@@ -1,22 +1,21 @@
 import { Component, input, output } from '@angular/core';
+import { KanbanNote } from "../kanban/kanban.component"
 
 
 @Component({
   selector: 'app-note',
   imports: [],
   templateUrl: './note.component.html',
-  styleUrl: './note.component.scss',
   standalone: true
 })
 export class NoteComponent {
 
   title = input.required<string>();
-  done = input.required<boolean>();
+  status = input.required<KanbanNote['status']>();
 
   onEditItemTitle = output<string>()
   onAddItem = output<void>()
   onRemoveItem = output<void>()
-  onSetComplete = output<boolean>()
 
   handleEditItemTitle() {
     const value = prompt('Enter new value', this.title());
@@ -31,8 +30,6 @@ export class NoteComponent {
     this.onRemoveItem.emit()
   }
 
-  handleSetComplete(value: boolean) {
-    this.onSetComplete.emit(value)
-  }
+
 
 }

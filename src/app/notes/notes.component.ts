@@ -13,7 +13,6 @@ import { NoteComponent } from "../note/note.component"
     NoteComponent
   ],
   templateUrl: './notes.component.html',
-  styleUrl: './notes.component.scss',
   standalone: true
 })
 export class NotesComponent extends DocsBase {

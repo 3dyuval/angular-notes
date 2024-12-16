@@ -15,9 +15,6 @@ import { BrowserWebSocketClientAdapter } from '@automerge/automerge-repo-network
     NotesComponent
   ]
 })
-export default class YoComponent {
-
-
-
+export default class NotesPageComponent {
 
 }

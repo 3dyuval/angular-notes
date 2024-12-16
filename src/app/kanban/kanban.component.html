@@ -1,9 +1,29 @@
-<header>
-  <h1>Kanban</h1>
-  <br>
-  <div class="flex">
-    <h2>Todo</h2>
-    <h2>Doing</h2>
-    <h2>Done</h2>
+<h1>Kanban</h1>
+<div class="notes">
+  <div class="grid">
+    @for (col of columns; track columns; ) {
+      <ul class="col">
+        <h2>{{ col }}</h2>
+        @for (item of items; track item; let i = $index) {
+          @if (item.status === col) {
+            <app-note
+              [title]="item.title"
+              [status]="item.status"
+              (onEditItemTitle)="editItemTitle($event, i)"
+              (onAddItem)="addItem(i, { status: col })"
+              (onRemoveItem)="removeItem(i)"
+            >
+              <select
+                [ngModel]="item.status"
+                (change)="onStatusChanged($any($event.target).value, i)"
+              >
+                @for (col of columns; track columns; ) {
+                  <option [value]="col">{{ col }}</option>
+                }
+              </select>
+            </app-note>
+          }
+        }
+      </ul>
+    }
   </div>
-</header>

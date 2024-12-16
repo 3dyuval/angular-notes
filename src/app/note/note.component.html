@@ -1,12 +1,11 @@
-<div class="flex">
+<li class="flex surface-100 border-0 borde-round-xs flex justify-content-between">
+  <span>
+  <h3>{{ title() }}</h3>
+  </span>
+  <span>
+  <ng-content></ng-content>
   <button (click)="handleEditItemTitle()">🖊️</button>
   <button (click)="handleAddItem()">➡️</button>
   <button (click)="handleRemoveItem()">✖️</button>
-  <h3>{{ title() }}</h3>
-  <input
-    type="checkbox"
-    name="done"
-    [value]="done()"
-    (change)="handleSetComplete($any($event.target).checked)
-">
-</div>
+  </span>
+</li>

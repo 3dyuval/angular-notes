@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `<router-outlet />`,
-  styleUrl: '../style.scss',
+  styleUrl: './app.component.scss',
   styles: `
     :host {
       max-width: 1280px;
@@ -15,5 +15,6 @@ import { RouterOutlet } from '@angular/router';
       text-align: center;
     }
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {}

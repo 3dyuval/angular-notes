@@ -5,7 +5,7 @@ import { IndexedDBStorageAdapter } from "@automerge/automerge-repo-storage-index
 import { BroadcastChannelNetworkAdapter } from "@automerge/automerge-repo-network-broadcastchannel"
 
 
-type Note = { title: string, done: boolean }
+export type Note = { title: string }
 
 @Directive({
   standalone: true
@@ -42,7 +42,7 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
         .finally(() => this.initialized = true)
       console.log('loaded doc.items', this.items)
     } else {
-      this.handle = this.repo.create({ items: [{ title: 'Note 1', done: false }] })
+      this.handle = this.repo.create({ items: [{title: '', done: false }] })
       console.log('created handle', this.handle)
       this.rootDocUrl = this.handle.url
       this.initialized = true
@@ -54,10 +54,10 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
   }
 
 
-  addItem(index?: number) {
+  addItem(index?: number, initialItem?: Partial<T>) {
     this.handle.change((doc: { items: Array<T> }) => {
       index = index || doc.items.length
-      doc.items.splice(index, 0, { title: '', done: false } as T)
+      doc.items.splice(index, 0, { title: '', ...initialItem } as T)
     })
   }
 
@@ -69,9 +69,9 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
     }
   }
 
-  setItemComplete(value: boolean, index: number) {
+  setItemProperty(property: keyof T, value: any, index: number) {
     this.handle.change((doc: { items: Array<T> }) => {
-      doc.items[index].done = value;
+      doc.items[index][property] = value;
     })
   }
 
