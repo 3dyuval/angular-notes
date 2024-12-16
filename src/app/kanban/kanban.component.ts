@@ -31,5 +31,9 @@ export class KanbanComponent extends DocsBase<KanbanNote> {
     this.setItemProperty('status', status, index)
   }
 
+  getTotalItemsForStatus(status: KanbanNote['status']) {
+    return this.items.filter(item => item.status === status).length
+  }
+
 
 }

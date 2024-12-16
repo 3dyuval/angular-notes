@@ -1,14 +1,15 @@
 <h1>Kanban</h1>
-<div class="notes">
-  <div class="grid">
-    @for (col of columns; track columns; ) {
-      <ul class="col">
-        <h2>{{ col }}</h2>
+<div class="grid">
+  @for (col of columns; track columns; ) {
+    <ul class="col">
+      <h2>{{ col }}</h2>
+      @if (!getTotalItemsForStatus(col)) {
+        <button (click)="addItem(0, { status: col })">Add {{ col }}</button>
+      } @else {
         @for (item of items; track item; let i = $index) {
           @if (item.status === col) {
             <app-note
               [title]="item.title"
-              [status]="item.status"
               (onEditItemTitle)="editItemTitle($event, i)"
               (onAddItem)="addItem(i, { status: col })"
               (onRemoveItem)="removeItem(i)"
@@ -24,6 +25,7 @@
             </app-note>
           }
         }
-      </ul>
-    }
-  </div>
+      }
+    </ul>
+  }
+</div>

@@ -5,11 +5,9 @@
   @for (item of items; track i; let i = $index) {
     <app-note
       [title]="item.title"
-      [done]="item.done"
       (onEditItemTitle)="editItemTitle($event, i)"
       (onAddItem)="addItem(i)"
       (onRemoveItem)="removeItem(i)"
-      (onSetComplete)="setItemComplete($event, i)"
     />
   }
 </div>

@@ -11,7 +11,6 @@ import { KanbanNote } from "../kanban/kanban.component"
 export class NoteComponent {
 
   title = input.required<string>();
-  status = input.required<KanbanNote['status']>();
 
   onEditItemTitle = output<string>()
   onAddItem = output<void>()

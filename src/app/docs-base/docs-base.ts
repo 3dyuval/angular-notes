@@ -42,7 +42,7 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
         .finally(() => this.initialized = true)
       console.log('loaded doc.items', this.items)
     } else {
-      this.handle = this.repo.create({ items: [{title: '', done: false }] })
+      this.handle = this.repo.create({ items: [{title: '' }] })
       console.log('created handle', this.handle)
       this.rootDocUrl = this.handle.url
       this.initialized = true
