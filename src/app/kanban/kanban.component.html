@@ -1,14 +1,16 @@
 <h1>Kanban</h1>
-<div class="grid">
-  @for (col of columns; track columns; ) {
-    <ul class="col">
+<div class="kanban-board">
+  @for (col of columns; track trackByColumn; ) {
+    <ul class="kanban-column" [class]="col" #column>
       <h2>{{ col }}</h2>
       @if (!getTotalItemsForStatus(col)) {
         <button (click)="addItem(0, { status: col })">Add {{ col }}</button>
       } @else {
-        @for (item of items; track item; let i = $index) {
+        @for (item of items; track trackByItem; let i = $index) {
           @if (item.status === col) {
             <app-note
+              class="kanban-item"
+              [attr.data-status]="item.status"
               [title]="item.title"
               (onEditItemTitle)="editItemTitle($event, i)"
               (onAddItem)="addItem(i, { status: col })"

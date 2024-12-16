@@ -20,6 +20,8 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
     document.location.hash = url
   }
 
+  onDocsInit?: () => void;
+
   @Input({ alias: 'rootDocUrl' }) _rootDocUrl?: string
   @Input() repo!: Repo
   public items: Array<T> = []
@@ -51,6 +53,8 @@ export abstract class DocsBase<T extends Note = any> implements OnInit {
     this.handle.on('change', ({ doc }) => {
       this.items = doc.items
     })
+
+    this.onDocsInit?.();
   }
 
 

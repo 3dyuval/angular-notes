@@ -1,0 +1,29 @@
+@media screen and (min-width: 768px) {
+  .kanban-board {
+    display: flex;
+
+    .kanban-column {
+      flex: 1;
+    }
+  }
+}
+
+::ng-deep ul.kanban-column {
+
+  gap: 1rem;
+  padding: 1rem;
+
+  &.doing li.note-item {
+    background-color: var(--yellow-200);
+  }
+
+  &.todo li.note-item {
+    background-color: var(--blue-500);
+  }
+
+  &.done li.note-item {
+    background-color: var(--gray-300);
+  }
+
+}
+
