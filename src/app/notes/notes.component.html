@@ -1,12 +1,15 @@
-
 <div class="notes">
-  @for (note of notes; track i; let i = $index) {
-    <form>
-      <button (click)="editNote(i)">e</button>
-      <button (click)="addNote(i)">+</button>
-      <button (click)="removeNote(i)">-</button>
-      <input type="text" name="title" [ngModel]="note.title" readonly>
-      <input type="checkbox" name="done" [ngModel]="note.done" (change)="toggleComplete($any($event.target).checked, i)">
-    </form>
+  @if(items.length === 0 ) {
+    <button (click)="addItem(0)">Add first item</button>
+  }
+  @for (item of items; track i; let i = $index) {
+    <app-note
+      [title]="item.title"
+      [done]="item.done"
+      (onEditItemTitle)="editItemTitle($event, i)"
+      (onAddItem)="addItem(i)"
+      (onRemoveItem)="removeItem(i)"
+      (onSetComplete)="setItemComplete($event, i)"
+    />
   }
 </div>

@@ -1,0 +1,12 @@
+<div class="flex">
+  <button (click)="handleEditItemTitle()">🖊️</button>
+  <button (click)="handleAddItem()">➡️</button>
+  <button (click)="handleRemoveItem()">✖️</button>
+  <h3>{{ title() }}</h3>
+  <input
+    type="checkbox"
+    name="done"
+    [value]="done()"
+    (change)="handleSetComplete($any($event.target).checked)
+">
+</div>

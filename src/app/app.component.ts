@@ -6,6 +6,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `<router-outlet />`,
+  styleUrl: '../style.scss',
   styles: `
     :host {
       max-width: 1280px;
